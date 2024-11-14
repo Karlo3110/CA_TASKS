@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>T3</title>
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/swiper/swiper-bundle.min.css"
+    />
+
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        overflow-x: hidden;
+        background-color: #f3ede5;
+      }
+
+      .swiper-container {
+        width: 90vw;
+        max-width: 100%;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .swiper-wrapper {
+        display: flex;
+      }
+
+      .swiper-slide {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80vh;
+      }
+
+      .swiper-slide img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .swiper-button-next,
+      .swiper-button-prev {
+        color: #ffffff;
+        background: rgba(0, 0, 0, 0.6);
+        border-radius: 50%;
+        padding: 10px;
+        width: 60px;
+        height: 60px;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 10;
+      }
+
+      .swiper-button-next {
+        right: 10px;
+      }
+
+      .swiper-button-prev {
+        left: 10px;
+      }
+
+      .toggle-button {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        padding: 10px 20px;
+        background-color: #000;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        z-index: 20;
+      }
+
+      @media (max-width: 375px) {
+        .swiper-container {
+          max-width: 375px;
+        }
+        .swiper-slide {
+          width: calc(100% - 20px);
+        }
+      }
+
+      @media (min-width: 1440px) {
+        .swiper-slide {
+          width: calc(45% - 10px);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="swiper-container" id="mySwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <img src="../assets/person1.png" alt="Person 1" />
+        </div>
+        <div class="swiper-slide">
+          <img src="../assets/person2.png" alt="Person 2" />
+        </div>
+        <div class="swiper-slide">
+          <img src="../assets/person3.png" alt="Person 3" />
+        </div>
+        <div class="swiper-slide">
+          <img src="../assets/person4.png" alt="Person 4" />
+        </div>
+      </div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
+    </div>
+
+    <button class="toggle-button" onclick="toggleSwiper()">
+      Toggle Swiper
+    </button>
+
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+    <script>
+      let swiperInstance;
+
+      function initializeSwiper() {
+        swiperInstance = new Swiper("#mySwiper", {
+          loop: false,
+          navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+          },
+          slidesPerView: 1.08,
+          spaceBetween: 10,
+          centeredSlides: true,
+          breakpoints: {
+            1440: {
+              slidesPerView: 3,
+              centeredSlides: true,
+            },
+          },
+          on: {
+            slideChange: function () {
+              console.log("Active slide index:", swiperInstance.activeIndex);
+            },
+          },
+        });
+      }
+
+      function toggleSwiper() {
+        if (swiperInstance) {
+          swiperInstance.destroy(true, true);
+          swiperInstance = null;
+        } else {
+          initializeSwiper();
+        }
+      }
+
+      initializeSwiper();
+    </script>
+  </body>
+</html>

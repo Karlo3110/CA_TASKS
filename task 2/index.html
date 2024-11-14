@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>T2</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      .recipes {
+        margin-top: 50px;
+        margin-bottom: 50px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .recipes__grid {
+        display: grid;
+        gap: 50px;
+        grid-template-columns: repeat(3, 1fr);
+        justify-items: center;
+        max-width: 95vw;
+      }
+
+      .recipes__item {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .image-container {
+        position: relative;
+        width: auto;
+        height: auto;
+        border: 1px black solid;
+      }
+
+      .recipes__item-img {
+        border-radius: 50%;
+        width: 100%;
+        height: 100%;
+        position: relative;
+        z-index: 2;
+      }
+
+      .corner-image {
+        position: absolute;
+        width: 160px;
+        height: 160px;
+        z-index: 0;
+      }
+
+      .top-left {
+        top: -30px;
+        left: -30px;
+        border: 1px black dashed;
+      }
+
+      .top-right {
+        top: -30px;
+        right: -30px;
+        border: 1px black dashed;
+      }
+
+      .bottom-left {
+        bottom: -30px;
+        left: -30px;
+        border: 1px black dashed;
+      }
+
+      .bottom-right {
+        bottom: -30px;
+        right: -30px;
+        border: 1px black dashed;
+      }
+
+      .recipes__heading {
+        font-size: 40px;
+        color: black;
+        margin-top: 40px;
+        margin-bottom: 40px;
+        text-transform: uppercase;
+      }
+
+      .recipes__heading--title {
+        font-size: 30px;
+      }
+
+      .rrn {
+        transform: rotate(90deg);
+      }
+
+      .rln {
+        transform: rotate(-90deg);
+      }
+
+      .rroe {
+        transform: rotate(180deg);
+      }
+
+      .rloe {
+        transform: rotate(-180deg);
+      }
+
+      .fh {
+        transform: rotateX(180deg);
+      }
+
+      @media only screen and (max-width: 768px) {
+        .image-container {
+          width: 300px;
+          height: 300px;
+        }
+      }
+
+      @media only screen and (max-width: 1280px) {
+        .recipes__grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!--
+    Pravi asseti su bili flipani i rotirani no kad bi preuzeo samo cropani ili scaleani na figmi bi imali offset. U pravom primjeru bi imali assete dostavljene od korisnika/voditelja.
+    Napravio sam jako slicno kao i na primjeru. Nisam imao mogucnost rulera na view only na figmi. Mislim da je bilo tocno 30px offset od relative pozicije nad slikama.
+    Smatram daj e naravno slike moglo wrappati u jos jedan div koji bi imao fixed width i height i onda justify content center i align items center + display flex pa temeljem toga alignati.
+    Ostavio sam ukljucene bordere cisto radi izgleda da se vidi kako sam razmisljao. Tu sam isto koristio BEM iako nije pisalo u zadatku jer sam jednostavno tako krenuo.
+    -->
+    <div class="recipes">
+      <h1 class="recipes__heading">Our Recipes</h1>
+      <div class="recipes__grid">
+        <div class="recipes__item">
+          <div class="image-container">
+            <img class="recipes__item-img" src="../assets/img1.png" />
+            <img class="corner-image top-left" src="../assets/1.png" />
+          </div>
+          <h1 class="recipes__heading recipes__heading--title">
+            Sparkling Triple Citrus & Mint Mocktail
+          </h1>
+        </div>
+        <div class="recipes__item">
+          <div class="image-container">
+            <img class="recipes__item-img" src="../assets/img2.png" />
+            <img class="corner-image bottom-left" src="../assets/2.png" />
+            <img class="corner-image top-right rrn" src="../assets/3.png" />
+          </div>
+          <h1 class="recipes__heading recipes__heading--title">
+            Sparkling Triple Citrus & Mint Mocktail
+          </h1>
+        </div>
+        <div class="recipes__item">
+          <div class="image-container">
+            <img class="recipes__item-img" src="../assets/img3.png" />
+            <img class="corner-image bottom-right" src="../assets/4.png" />
+          </div>
+          <h1 class="recipes__heading recipes__heading--title">
+            Sparkling Triple Citrus & Mint Mocktail
+          </h1>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

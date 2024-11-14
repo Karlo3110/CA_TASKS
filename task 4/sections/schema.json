@@ -1,0 +1,41 @@
+{
+    "name": "Custom Section",
+    "settings": [
+      {
+        "type": "image_picker",
+        "label": "Section Image",
+        "id": "section_image",
+        "default": "assets/1440.png"
+      },
+      {
+        "type": "textarea",
+        "label": "Paragraph Text",
+        "id": "paragraph_text",
+        "default": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quisquam placeat iure, natus necessitatibus fugiat, architecto dicta, nostrum esse eveniet enim expedita praesentium quasi reiciendis? Esse libero natus atque sit excepturi!"
+      },
+      {
+        "type": "text",
+        "label": "Button Text",
+        "id": "button_text",
+        "default": "Button"
+      },
+      {
+        "type": "color",
+        "label": "Button Background Color",
+        "id": "button_bg_color",
+        "default": "#96aaff"
+      },
+      {
+        "type": "color",
+        "label": "Button Text Color",
+        "id": "button_text_color",
+        "default": "#ffffff"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Default",
+        "category": "Custom"
+      }
+    ]
+  }

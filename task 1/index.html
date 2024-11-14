@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>T1</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        margin-top: 200vh;
+        margin-bottom: 200vh;
+        width: 100wv;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        flex-direction: row;
+        background-color: rgb(218, 218, 218);
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.5s, transform 0.5s;
+      }
+      .container__content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+      }
+      .container__imageContent {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .section--container--image {
+        width: 100%;
+      }
+
+      .btn {
+        margin: 20px;
+        min-width: 100px;
+        height: 40px;
+        background-color: rgb(255, 132, 132);
+        font-size: 16px;
+      }
+
+      .btn--blue {
+        background-color: rgb(150, 150, 255);
+      }
+
+      .par {
+        padding-left: 20px;
+        padding-right: 20px;
+        font-size: 30px;
+        text-align: center;
+        transition: opacity 0.5s, transform 0.5s;
+      }
+
+      .visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .fade-out {
+        z-index: -10;
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      @media only screen and (max-width: 768px) {
+        .container {
+          flex-direction: column;
+        }
+
+        .par {
+          font-size: 14px;
+        }
+
+        .btn {
+          width: 80px;
+          height: 32px;
+          font-size: 12px;
+        }
+      }
+
+      @media only screen and (max-width: 1280px) {
+        .par {
+          font-size: 20px;
+        }
+        .btn {
+          width: 80px;
+          height: 32px;
+          font-size: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="container__imageContent">
+        <img
+          src="../assets/1440.png"
+          alt="sectionImage"
+          class="section--container--image"
+        />
+      </div>
+      <div class="container__content">
+        <p class="par">
+          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quisquam
+          placeat iure, natus necessitatibus fugiat, architecto dicta, nostrum
+          esse eveniet enim expedita praesentium quasi reiciendis? Esse libero
+          natus atque sit excepturi!
+        </p>
+        <button class="btn btn--blue">Button</button>
+      </div>
+    </div>
+    <script>
+      const container = document.querySelector(".container");
+      const button = document.querySelector(".btn");
+      const paragraph = document.querySelector(".par");
+
+      const observerOptions = {
+        root: null,
+        threshold: 0.3,
+      };
+
+      const observerCallback = (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            container.classList.add("visible");
+          } else {
+            container.classList.remove("visible");
+          }
+        });
+      };
+
+      const observer = new IntersectionObserver(
+        observerCallback,
+        observerOptions
+      );
+      observer.observe(container);
+
+      button.addEventListener("click", () => {
+        if (paragraph.classList.contains("fade-out")) {
+          paragraph.classList.remove("fade-out");
+        } else {
+          paragraph.classList.add("fade-out");
+        }
+      });
+    </script>
+  </body>
+</html>

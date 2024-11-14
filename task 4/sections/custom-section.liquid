@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>T4</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .container {
+        margin-top: 200vh;
+        margin-bottom: 200vh;
+        width: 100vw;
+        display: flex;
+        justify-content: start;
+        align-items: center;
+        flex-direction: row;
+        background-color: rgb(218, 218, 218);
+      }
+      .container__content {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        transform: translateY(20px);
+        transition: opacity 0.5s, transform 0.5s;
+      }
+      .container__imageContent {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        width: 100%;
+      }
+
+      .section--container--image {
+        width: 100%;
+      }
+
+      .btn {
+        margin: 20px;
+        min-width: 100px;
+        height: 40px;
+        background-color: {{ settings.button_bg_color }};
+        font-size: 16px;
+        color: {{ settings.button_text_color }};
+      }
+
+      .par {
+        padding-left: 20px;
+        padding-right: 20px;
+        font-size: 30px;
+        text-align: center;
+        transition: opacity 0.5s, transform 0.5s;
+      }
+
+      .visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      .fade-out {
+        z-index: -10;
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      @media only screen and (max-width: 768px) {
+        .container {
+          flex-direction: column;
+        }
+
+        .par {
+          font-size: 14px;
+        }
+
+        .btn {
+          width: 80px;
+          height: 32px;
+          font-size: 12px;
+        }
+      }
+
+      @media only screen and (max-width: 1280px) {
+        .par {
+          font-size: 20px;
+        }
+        .btn {
+          width: 80px;
+          height: 32px;
+          font-size: 12px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="container__imageContent">
+        <img
+          src="{{ settings.section_image | asset_url }}"
+          alt="sectionImage"
+          class="section--container--image"
+        />
+      </div>
+      <div class="container__content">
+        <p class="par">{{ settings.paragraph_text }}</p>
+        <button class="btn">{{ settings.button_text }}</button>
+      </div>
+    </div>
+    <script>
+      const containerContent = document.querySelector(".container__content");
+      const button = document.querySelector(".btn");
+      const paragraph = containerContent.querySelector(".par");
+      const offset = 250;
+
+      const revealSection = () => {
+        const sectionPosition = containerContent.getBoundingClientRect();
+        if (
+          sectionPosition.top <= window.innerHeight - offset &&
+          sectionPosition.bottom >= 0
+        ) {
+          containerContent.classList.add("visible");
+        } else {
+          containerContent.classList.remove("visible");
+        }
+      };
+
+      window.addEventListener("scroll", revealSection);
+      revealSection();
+
+      button.addEventListener("click", () => {
+        if (paragraph.classList.contains("fade-out")) {
+          paragraph.classList.remove("fade-out");
+        } else {
+          paragraph.classList.add("fade-out");
+        }
+      });
+    </script>
+  </body>
+</html>
